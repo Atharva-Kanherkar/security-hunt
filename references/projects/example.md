@@ -1,6 +1,6 @@
 # <project> notes (template)
 
-Copy to `references/<project>.md` and fill in. Keep it private if it names
+Copy to `references/projects/<project>.md` and fill in. Keep it private if it names
 unfixed bugs: this file should live only in your local install, never in a
 public fork.
 
@@ -14,7 +14,7 @@ public fork.
 
 - <short claim> -> <tracker link> (<status>, checked <date>)
 
-## Where to search upstream (Phase 5)
+## Where to search upstream (Phase 6)
 
 - Issue tracker repo(s).
 - Repos where decisions live: PR bodies, infra/config repo, deploy secrets layout.

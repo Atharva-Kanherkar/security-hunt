@@ -1,4 +1,4 @@
 .DS_Store
-references/*.md
-!references/gates.md
-!references/project-notes.example.md
+# Private per-project notes stay local; only the template is public.
+references/projects/*
+!references/projects/example.md

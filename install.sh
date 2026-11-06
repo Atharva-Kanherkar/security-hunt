@@ -117,10 +117,23 @@ installed=0
 for dir in "${TARGETS[@]}"; do
   dest="$dir/$SKILL"
   mkdir -p "$dest"
-  rm -f "$dest/SKILL.md" "$dest/references/gates.md" "$dest/references/project-notes.example.md"
+  # Replace what this repo ships; leave private notes in references/projects/ alone.
+  rm -rf "$dest/references/checklists" "$dest/scripts"
+  rm -f "$dest/SKILL.md" "$dest/references/project-notes.example.md"
+  mkdir -p "$dest/references/projects"
   cp "$SRC/SKILL.md" "$dest/SKILL.md"
-  mkdir -p "$dest/references"; cp "$SRC"/references/*.md "$dest/references/"
+  cp "$SRC"/references/*.md "$dest/references/"
+  cp -R "$SRC/references/checklists" "$dest/references/"
+  cp "$SRC/references/projects/example.md" "$dest/references/projects/example.md"
+  cp -R "$SRC/scripts" "$dest/"
+  chmod +x "$dest/scripts"/*.sh
   say "  installed  $dest"
+  for f in "$dest"/references/*.md; do
+    case "$(basename "$f")" in
+      gates.md|ranking.md|oracles.md|cases.md|sources.md) ;;
+      *) warn "$(basename "$f") looks like project notes; move it to references/projects/ so the skill finds it" ;;
+    esac
+  done
   installed=$((installed + 1))
 done
 
